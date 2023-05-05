@@ -1,5 +1,37 @@
+@use './scss/Variables' as *;
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: $secondary_color;
+}
+
+main {
+  flex: 1;
+  min-height: calc(100vh - 30rem);
+}
+
+::selection {
+  background-color: $third_color;
+  color: $primary_dark_color;
+}
+
+input:focus {
+  box-shadow: $shadow !important;
+  outline: none;
+  border: none;
+}
+
+input[type='number'] {
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    appearance: none;
+  }
 }

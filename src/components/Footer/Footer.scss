@@ -1,0 +1,46 @@
+@use '../../scss/Variables' as *;
+@use '../../scss/Mixins' as *;
+@use '../../scss/ClassNames' as *;
+
+footer {
+  background-color: $secondary_dark_color;
+  padding: 1rem;
+  margin: 1rem 0 0;
+  line-height: 1.7;
+  @extend .hstack;
+
+  .row {
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  figure {
+    img {
+      width: 10rem;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  svg {
+    padding: 0 1rem 0 0;
+  }
+
+  h2 {
+    font-weight: bold;
+  }
+  span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  h4 {
+    color: $third_color;
+    font-weight: bold;
+    @include MediaQuery('xs') {
+      font-size: 1rem;
+    }
+  }
+}

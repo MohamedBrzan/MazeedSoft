@@ -1,0 +1,20 @@
+@use '../../scss/Variables' as *;
+
+.upper_btn {
+  position: fixed;
+  bottom: 1rem;
+  right: -100%;
+  background-color: $secondary_dark_color;
+  padding: 0.5rem 1rem;
+  border: 0.2rem solid $third_color;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  svg {
+    color: $third_color;
+  }
+  transition: right 0.3s ease-in-out;
+
+  &.active {
+    right: 1rem;
+  }
+}

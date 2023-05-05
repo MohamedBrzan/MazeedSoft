@@ -1,0 +1,74 @@
+@use './Mixins' as *;
+@use './Variables' as *;
+
+%custom_btn {
+  padding: 1.5rem 3rem;
+  background-color: $primary_color;
+  border-radius: 0.2rem;
+  border: 0;
+  outline: 0;
+  &:active {
+    background-color: $primary_dark_color;
+    box-shadow: $shadow;
+  }
+  &:hover {
+    box-shadow: $shadow;
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  @include MediaQuery('xs') {
+    justify-content: center;
+  }
+  @include MediaQuery('sm') {
+    justify-content: center;
+  }
+  @include MediaQuery('md') {
+    justify-content: flex-start;
+  }
+  .line {
+    width: 10%;
+    height: 1px;
+    background-color: $primary_color;
+    margin: 0 0 0 1rem;
+  }
+}
+
+.title_plus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    position: relative;
+    text-transform: uppercase;
+  }
+  .line {
+    width: 10%;
+    height: 1px;
+    background-color: $primary_color;
+    &:first-of-type {
+      margin: 0 1rem 0 0;
+    }
+    &:last-of-type {
+      margin: 0 0 0 1rem;
+    }
+  }
+}
+.hstack {
+  @include MediaQuery('xs') {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  @include MediaQuery('sm') {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  @include MediaQuery('md') {
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,17 @@
+@use '../../scss/Variables' as *;
+
+.CustomBreadcrumb {
+  .breadcrumb-item {
+    a {
+      text-decoration: none;
+      color: $grey;
+      cursor: none;
+    }
+    &.active {
+      a {
+        color: $orange;
+        cursor: pointer;
+      }
+    }
+  }
+}

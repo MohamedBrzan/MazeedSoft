@@ -1,0 +1,16 @@
+.social_media_links {
+  margin: auto;
+  a {
+    &:first-of-type,
+    &:last-of-type {
+      svg {
+        color: #3b5998;
+      }
+    }
+    &:nth-child(2) {
+      svg {
+        color: #da2c15;
+      }
+    }
+  }
+}

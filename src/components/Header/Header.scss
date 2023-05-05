@@ -1,0 +1,132 @@
+@use '../../scss/Variables' as *;
+@use '../../scss/Mixins' as *;
+
+%Flex_Evenly {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0;
+}
+
+%Responsive_Disabled {
+  display: none;
+  @include MediaQuery('xl') {
+    display: flex;
+  }
+}
+
+header {
+  background-color: #ffffff;
+  .logo {
+    figure {
+      width: 8rem;
+      img{
+        width: 100%
+      }
+    }
+  }
+
+  nav {
+    .links {
+      @extend %Flex_Evenly;
+      @extend %Responsive_Disabled;
+      a {
+        text-decoration: none;
+        color: $primary_color;
+        padding: 0 1rem;
+      }
+
+      a.active {
+        color: $third_color;
+        background-color: $secondary_dark_color;
+        padding: 0.4rem;
+        border-bottom: 2px solid black;
+        outline: 0.1px solid $third_color;
+        border-radius: 0.3rem;
+      }
+    }
+
+    .shorts {
+      @extend %Flex_Evenly;
+      @extend %Responsive_Disabled;
+      li {
+        padding: 0 1rem;
+      }
+    }
+
+    .nav_btn {
+      text-decoration: none;
+      color: white;
+      background-color: $primary_color;
+      border-radius: 3rem;
+      padding: 0.2rem 2rem;
+      @extend %Responsive_Disabled;
+    }
+  }
+}
+
+.hamburger_menu_icon {
+  cursor: pointer;
+  display: flex;
+  @include MediaQuery('xl') {
+    display: none;
+  }
+}
+
+.offcanvas,
+.offcanvas-backdrop {
+  display: block;
+  @include MediaQuery('xl') {
+    display: none;
+  }
+}
+
+.offcanvas {
+  .links {
+    a {
+      text-decoration: none;
+      color: $third_color;
+      &:hover {
+        color: $secondary_dark_color;
+        font-weight: bold;
+        li {
+          color: $secondary_dark_color;
+        }
+      }
+      &.active {
+        li {
+          color: $third_color;
+          background-color: $secondary_dark_color;
+          padding: 0.4rem;
+          border-bottom: 2px solid black;
+          outline: 0.1px solid $third_color;
+          border-radius: 0.3rem;
+        }
+      }
+    }
+    li {
+      padding: 0.5rem 0;
+      &:hover {
+        background-color: $third_color;
+        padding: 0.5rem;
+      }
+    }
+  }
+
+  .shorts {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    li {
+      padding: 1rem;
+    }
+  }
+
+  .nav_btn {
+    text-decoration: none;
+    color: white;
+    background-color: $primary_color;
+    border-radius: 3rem;
+    padding: 0.2rem 2rem;
+  }
+}
