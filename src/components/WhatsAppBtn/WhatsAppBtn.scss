@@ -1,0 +1,63 @@
+@use '../../scss/Variables' as *;
+
+.whatsApp_btn {
+  position: fixed;
+  bottom: 8rem;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  figure {
+    width: 3rem;
+    margin: 0;
+    z-index: 999;
+    cursor: pointer;
+  }
+  svg {
+    color: #1d8f47;
+    position: relative;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    position: absolute;
+    width: 130%;
+    height: 130%;
+    border-radius: 50%;
+    background-color: #009135;
+    // animation: identifier 2s infinite linear;
+    display: grid;
+    place-items: center;
+    z-index: 1;
+    opacity: 0.7;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: #25d366;
+    animation: identifier 2s infinite linear;
+    display: grid;
+    place-items: center;
+    z-index: -1;
+    opacity: 0.7;
+  }
+}
+
+@keyframes identifier {
+  0% {
+    padding: 0;
+    width: 0;
+    height: 0;
+    opacity: 0.7;
+  }
+  100% {
+    width: 200%;
+    height: 200%;
+    opacity: 0;
+  }
+}

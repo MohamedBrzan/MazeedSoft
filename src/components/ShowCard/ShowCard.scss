@@ -1,0 +1,33 @@
+@use '../../scss/Variables' as *;
+
+.content_col {
+  overflow-wrap: break-word;
+  overflow: hidden;
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.modal-backdrop {
+  background-color: $fourth_color;
+  opacity: 0.1 !important;
+}
+.modal {
+  .modal-header {
+    background-color: $secondary_color;
+    color: $third_color;
+  }
+  .modal-body {
+    background-color: $secondary_color;
+    color: $third_color;
+  }
+  .modal-footer {
+    background-color: $secondary_color;
+    color: $third_color;
+  }
+
+  .btn-close {
+    margin: 0 !important;
+  }
+}

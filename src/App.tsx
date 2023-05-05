@@ -1,5 +1,4 @@
-import Interface from './interface/Interface';
-import UpperBtn from './components/UpperBtn/UpperBtn';
+import Interface from './pages/Interface/Interface';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 
@@ -13,7 +12,6 @@ window.onscroll = () => {
 function App() {
   return (
     <>
-      <UpperBtn />
       <Interface />
     </>
   );
