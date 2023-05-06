@@ -1,0 +1,16 @@
+@use '../../scss/Variables' as *;
+
+.privacy {
+ 
+  .top_sec {
+    background-color: $fourth_color;
+    color: white;
+    padding: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  p{
+   line-height: 3;
+  }
+}

@@ -1,0 +1,7 @@
+@use '../../scss/Variables' as *;
+
+.rating {
+  > * {
+    color: $third_color;
+  }
+}

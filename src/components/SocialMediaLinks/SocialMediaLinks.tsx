@@ -2,6 +2,7 @@ import { BsFacebook } from 'react-icons/bs';
 import './SocialMediaLinks.scss';
 import { AiFillYoutube, AiFillLinkedin } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { footer } from '../../../db/db.json';
 
 export type SocialMediaIconsSize = {
   size: number;
@@ -9,15 +10,16 @@ export type SocialMediaIconsSize = {
 
 const SocialMediaLinks = (props: SocialMediaIconsSize) => {
   const { size } = props;
+  const { facebook, youtube, linkedin } = footer.links;
   return (
     <div className='social_media_links'>
-      <Link to='https://web.facebook.com/almanarasoft?_rdc=1&_rdr'>
+      <Link to={facebook}>
         <BsFacebook size={size} />
       </Link>
-      <Link to='https://www.youtube.com/c/Almanarasoft'>
+      <Link to={youtube}>
         <AiFillYoutube size={size} />
       </Link>
-      <Link to='https://www.linkedin.com/company/almanarasoft/'>
+      <Link to={linkedin}>
         <AiFillLinkedin size={size} />
       </Link>
     </div>

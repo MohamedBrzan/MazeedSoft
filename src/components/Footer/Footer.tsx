@@ -3,13 +3,12 @@ import Col from 'react-bootstrap/Col';
 import './Footer.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopyright } from '@fortawesome/free-solid-svg-icons';
-
 import { Link } from 'react-router-dom';
-import { LogoType } from '../../main';
 import SocialMediaLinks from '../SocialMediaLinks/SocialMediaLinks';
+import { footer } from '../../../db/db.json';
 
-const Footer = (props: LogoType) => {
-  const { logo } = props;
+const Footer = () => {
+  const { logo, desc, importantLinks, rights } = footer;
 
   return (
     <footer>
@@ -18,10 +17,7 @@ const Footer = (props: LogoType) => {
           <figure>
             <img src={logo} alt='Website Logo.' width={100} />
           </figure>
-          <p>
-            شركة آرام تك هو المزود الرائد لحلول البرمجيات وتطوير الشبكة . تأسست
-            آرام تك في نهاية عام 2017.
-          </p>
+          <p>{desc}</p>
         </Col>
         <Col xs={12} md={6} lg={4}>
           <h4>وسائل التواصل</h4>
@@ -30,17 +26,22 @@ const Footer = (props: LogoType) => {
         <Col xs={12} md={6} lg={4}>
           <h4>روابط مهمة</h4>
           <p>
-            موقعنا الرسمي <Link to='https://www.arambs.com'>arambs.com</Link>{' '}
+            {importantLinks.text}
+            <Link to={importantLinks.link.url}>
+              {importantLinks.link.name}
+            </Link>{' '}
           </p>
           <p>
-            <Link to='/privacy'>Privacy Policy</Link>
+            <Link to={importantLinks.privacy.url}>
+              {importantLinks.privacy.name}
+            </Link>
           </p>
         </Col>
       </Stack>
       <hr />
       <div className='text-center'>
         <FontAwesomeIcon icon={faCopyright} />
-        <span className='px-1'>كل الحقوق محفوظة</span>
+        <span className='px-1'>{rights}</span>
         {new Date().getFullYear()}
       </div>
     </footer>

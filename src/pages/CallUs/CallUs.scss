@@ -1,0 +1,9 @@
+@use '../../scss/Variables' as *;
+@use '../../scss/ClassNames' as *;
+
+.call_us {
+  padding: 2rem;
+  .form_btn {
+    @extend %custom_btn;
+  }
+}

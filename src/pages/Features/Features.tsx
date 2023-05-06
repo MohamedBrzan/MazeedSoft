@@ -1,4 +1,5 @@
 import CustomCard from '../../components/CustomCard/CustomCard';
+
 import './Features.scss';
 
 const Features = () => {

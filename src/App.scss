@@ -1,0 +1,17 @@
+@use './scss/Variables' as *;
+@use './scss/Mixins' as *;
+
+.get_now {
+  background-color: $third_color;
+  color: $secondary_dark_color;
+  padding: 0.5rem 3rem;
+  border-radius: 0.4rem;
+  border-bottom: 0.4rem solid $primary_dark_color;
+  font: {
+    size: 2rem;
+    weight: bold;
+  }
+  @include MediaQuery('xs') {
+    font-size: 1.3rem;
+  }
+}

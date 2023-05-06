@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "server": "json-server --watch db/db.json --port 8000",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -16,10 +17,12 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mdx-js/rollup": "^2.3.0",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.3",
     "@reduxjs/toolkit": "^1.9.5",
     "bootstrap": "^5.2.3",
+    "json-server": "^0.17.3",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
@@ -28,6 +31,7 @@
     "react-router-dom": "^6.11.1",
     "redux": "^4.2.1",
     "sass": "^1.62.1",
+    "swiper": "^9.2.4",
     "video-react": "^0.16.0"
   },
   "devDependencies": {

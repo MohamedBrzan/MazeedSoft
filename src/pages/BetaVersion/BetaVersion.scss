@@ -1,0 +1,25 @@
+@use '../../scss/Variables' as *;
+
+.beta_version {
+  padding: 2rem 0;
+  .main_color {
+    background-color: $third_color;
+    strong {
+      color: $secondary_color;
+    }
+  }
+  .secondary_color {
+    background-color: $fourth_color;
+    strong {
+      color: $secondary_color;
+    }
+  }
+  .get_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .get_now {
+      text-decoration: none;
+    }
+  }
+}

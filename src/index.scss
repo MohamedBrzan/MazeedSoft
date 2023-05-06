@@ -23,7 +23,8 @@ main {
   color: $primary_dark_color;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   box-shadow: $shadow !important;
   outline: none;
   border: none;
@@ -35,3 +36,4 @@ input[type='number'] {
     appearance: none;
   }
 }
+

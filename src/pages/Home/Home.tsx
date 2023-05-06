@@ -3,50 +3,43 @@ import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
-import './Interface.scss';
-import { Col, Container, Row } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { home } from '../../../db/db.json';
+import './Home.scss';
 
-const Interface = () => {
+const Home = () => {
+  const { advice, introText, signature, askForm, btn } = home;
   return (
-    <article className='interface'>
+    <article className='home'>
       <section className='intro_img'>
-        <Row className='m-0 p-0'>
-          <Col xs={12} md={6} className='content'>
-            <p> برنامج المنارة</p>
-            <p> للمحاسبة </p>
-            <p> و المستودعات.</p>
+        <figure></figure>
+        <Row>
+          <Col className='content'>
+            <p>{introText.first}</p>
+            <p>{introText.second}</p>
+            <p>{introText.third}</p>
 
             <Link to='/call_us' className='form_btn'>
-              تواصل معنا
+              {btn}
             </Link>
           </Col>
-          <Col xs={12} md={6} className='truth_signature'>
-            <h6>
-              {' '}
-              معتمد من قبل هيئة <br />
-              الزكاة والضريبة
-            </h6>
+          <Col className='truth_signature'>
+            <h6> {signature}</h6>
           </Col>
         </Row>
       </section>
       <section className='manage_numbers'>
-        <h2>لا يجب أن تكون إدارة جانب الأرقام في عملك صعبًا أو مرهقًا.</h2>
-        <p>
-          مع الأنظمة الصحيحة والتوجيه المناسب ، يمكن أن تكون إدارة الشؤون
-          المالية لأعمالك أمرًا مُمكِّنًا.
-        </p>
-        <p>
-          فبدلاً من الشعور بأنك تتفوق عليه ، ستشعر بالسيطرة على أموالك ويمكنك
-          اتخاذ قرارات أفضل بشأن عملك.
-        </p>
+        <h2>{advice.title}</h2>
+        <p> {advice.desc_one} </p>
+        <p> {advice.desc_two} </p>
       </section>
       <section className='ready_control'>
         <h2>
-          هل أنت مستعد للتحكم في الشؤون المالية لشركتك
-          <br /> والتخلص من ضغوط الوقت الضريبي؟
-          <br />
+          {askForm.title_one} <br /> {askForm.title_two}
         </h2>
-        <span className='get_now'>إحصل على النسخة التجريبية الأن</span>
+        <span className='get_now'>{askForm.offer} </span>
 
         <Container className='form_container'>
           <Form>
@@ -104,7 +97,7 @@ const Interface = () => {
               </Col>
             </Row>
             <Button type='submit' className='form_btn'>
-              إطلبها الأن
+              {askForm.btn}
             </Button>
           </Form>
         </Container>
@@ -113,4 +106,4 @@ const Interface = () => {
   );
 };
 
-export default Interface;
+export default Home;

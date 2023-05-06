@@ -1,8 +1,10 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import AboutUs2 from '../../assets/about_us2.jpg';
+import { about_us } from '../../../db/db.json';
 import './AboutUs.scss';
 
 const AboutUs = () => {
+  const { title, desc, image, mission, vision } = about_us;
   return (
     <section className='about_us'>
       <Container className='py-5'>
@@ -10,7 +12,7 @@ const AboutUs = () => {
           <Col xs={12} md={6}>
             <figure>
               <img
-                src={AboutUs2}
+                src={image}
                 alt=''
                 width='auto'
                 height={600}
@@ -20,22 +22,19 @@ const AboutUs = () => {
           </Col>
           <Col xs={12} md={6}>
             <h2 className='mb-3'>
-              <strong>من نحن</strong>{' '}
+              <strong> {title}</strong>{' '}
             </h2>
-            <p>
-              شركة آرام تك هو المزود الرائد لحلول البرمجيات وتطوير الشبكة .
-              تأسست آرام تك في نهاية عام 2017.
-            </p>
+            <p>{desc}</p>
             <p>
               <span>
-                <strong>مهمتنا : </strong>توفير أفضل حلول البرمجيات لتناسب
-                احتياجات ومتطلبات العملاء.
+                <strong>{mission.title} : </strong>
+                {mission.desc}
               </span>
             </p>
             <p>
               <span>
-                <strong>رؤيتنا : </strong>تقديم الدعم الفني وخدمات ما بعد البيع
-                لتحقيق أعلى المعايير المهنية.
+                <strong>{vision.title} : </strong>
+                {vision.desc}
               </span>
             </p>
           </Col>

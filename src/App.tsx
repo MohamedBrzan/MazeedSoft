@@ -1,6 +1,9 @@
-import Interface from './pages/Interface/Interface';
+import Interface from './pages/Home/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 window.onscroll = () => {
   if (window.scrollY >= 100) {
