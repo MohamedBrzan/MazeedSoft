@@ -7,7 +7,7 @@ const VideoPage = () => {
   return (
     <section className='videoPage'>
       <Container>
-        <Player playsInline poster='/Aram-Tech-PNG.png' src={video} />
+        <Player playsInline poster='/Aram-Tech-PNG.png' src={video.video} />
       </Container>
     </section>
   );

@@ -2,19 +2,15 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import './ShowCard.scss';
 import { Col, Row } from 'react-bootstrap';
+import ModalProps from '../../types/ModalProps';
 
-export type ShowCardProps = {
-  onHide: () => void;
-  modalShow: boolean;
-};
-
-const ShowCard = (props: ShowCardProps) => {
+const ShowCard = (props: ModalProps) => {
   const { onHide, modalShow } = props;
   const card = JSON.parse(localStorage.getItem('card') || '')
     ? JSON.parse(localStorage.getItem('card') || '')
     : {};
 
-  const { id, image, title, desc } = card;
+  const { image, title, desc } = card;
   return (
     <section className='show_card'>
       <Modal

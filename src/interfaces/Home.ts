@@ -1,6 +1,6 @@
 interface Home {
-  logo: string;
-  image: string;
+  logo?: string;
+  image?: string;
   introText: {
     first: string;
     second: string;

@@ -1,0 +1,64 @@
+@use '../../scss/Variables' as *;
+
+.dashboard {
+  background-color: #ebedf0;
+  .row {
+    margin: 0;
+    padding: 0;
+    .links_col {
+      padding: 0;
+      background-color: $dashboard_dark;
+      color: $dashboard_light;
+      min-height: 100vh;
+      h3 {
+        text-align: center;
+      }
+    }
+    li.link_item {
+      margin: 0;
+      cursor: pointer;
+      padding: 1rem;
+      &:hover {
+        background-color: $dashboard_darker;
+      }
+      &.active {
+        color: #12a5b0;
+        background-color: $dashboard_darker;
+      }
+    }
+  }
+  .form_btn {
+    background-color: $dashboard_dark;
+    color: $dashboard_light;
+    border-color: $dashboard_darker;
+    &:active {
+      border-color: $dashboard_darker;
+      background-color: transparent;
+      color: $dashboard_darker;
+    }
+  }
+
+  .dashboard_section {
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+}
+.from-control {
+  padding: 3rem;
+}
+
+.modal_form_btn {
+  margin-top: 1rem;
+  background-color: $dashboard_dark;
+  color: $dashboard_light;
+  border-color: $dashboard_darker;
+  &:active,
+  &:hover {
+    border-color: $dashboard_darker;
+    background-color: $dashboard_darker;
+    color: $dashboard_darker;
+    color: $dashboard_light;
+  }
+}

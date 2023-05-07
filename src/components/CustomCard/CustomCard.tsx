@@ -7,16 +7,26 @@ import Col from 'react-bootstrap/Col';
 import { features } from '../../../db/db.json';
 
 import './CustomCard.scss';
-import ShowCard, { ShowCardProps } from '../ShowCard/ShowCard';
+import ShowCard from '../ShowCard/ShowCard';
+import Card from '../../interfaces/Card';
+import ModalProps from '../../types/ModalProps';
 
 const CustomCard = () => {
   const [modalShow, setModalShow] = useState<boolean>(false);
   const onShow = () => setModalShow(true);
   const onHide = () => setModalShow(false);
 
-  const props: ShowCardProps = {
+  const props: ModalProps = {
     onHide,
     modalShow,
+  };
+
+  const handleLocalStorage = ({ id, image, title, desc }: Card) => {
+    window.localStorage.setItem(
+      'card',
+      JSON.stringify({ id, image, title, desc })
+    );
+    // navigate(`/program_features/${id}`);
   };
 
   return (
@@ -32,12 +42,7 @@ const CustomCard = () => {
                 xl={3}
                 className='custom_card'
                 key={index}
-                onClick={() =>
-                  window.localStorage.setItem(
-                    'card',
-                    JSON.stringify({ id, image, title, desc })
-                  )
-                }
+                onClick={() => handleLocalStorage({ id, image, title, desc })}
               >
                 <figure>
                   <img src={image} alt={title} loading='lazy' />

@@ -6,9 +6,15 @@ import General from './helpers/General';
 import Movement from './helpers/Materials/Movement';
 import POS from './helpers/POS/POS';
 import Accounts from './helpers/Accounts/Accounts';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const BetaVersion = () => {
+  const navigate = useNavigate();
+
+  const ContactWithUs = () => {
+    window.scrollTo(0, 0);
+    navigate('/call_us');
+  };
   return (
     <section className='beta_version'>
       <Container>
@@ -42,7 +48,11 @@ const BetaVersion = () => {
         </Table>
       </Container>
       <div className='get_btn'>
-        <Link to='/' className='get_now'>
+        <Link
+          to='/call_us'
+          className='get_now'
+          onClick={() => window.scrollTo(0, 0)}
+        >
           <span className='get_now'>إطلب النسخة التجريبية المجانية الأن</span>
         </Link>
       </div>
