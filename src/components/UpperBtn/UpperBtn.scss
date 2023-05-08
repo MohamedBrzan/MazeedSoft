@@ -8,6 +8,7 @@
   padding: 0.5rem 1rem;
   border: 0.2rem solid $third_color;
   border-radius: 0.5rem;
+  z-index: 9999;
   cursor: pointer;
   svg {
     color: $third_color;

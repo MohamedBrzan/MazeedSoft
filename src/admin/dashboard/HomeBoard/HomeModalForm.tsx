@@ -9,6 +9,7 @@ import {
 } from 'react-bootstrap';
 import ModalProps from '../../../types/ModalProps';
 import HandleChangeHomeData from '../../../functions/HandleChangeHomeData';
+import HandleOnChange from '../../../functions/HandleOnChange';
 
 const HomeModalForm = (props: ModalProps) => {
   const homeData = JSON.parse(localStorage.getItem('home_data') || '')
@@ -60,13 +61,6 @@ const HomeModalForm = (props: ModalProps) => {
     signature,
   ]);
 
-  const handleOnChange = (
-    e: React.ChangeEvent<FormControlElement>,
-    state: React.Dispatch<React.SetStateAction<string>>
-  ) => {
-    return state(e.target.value);
-  };
-
   return (
     <Modal
       className='home_modal_form'
@@ -88,7 +82,7 @@ const HomeModalForm = (props: ModalProps) => {
                 value={btnText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setBtnText)}
+                onChange={(e) => HandleOnChange(e, setBtnText)}
               />
             </FormGroup>
           </Col>
@@ -99,7 +93,7 @@ const HomeModalForm = (props: ModalProps) => {
                 value={signatureText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setSignatureText)}
+                onChange={(e) => HandleOnChange(e, setSignatureText)}
               />
             </FormGroup>
           </Col>
@@ -110,7 +104,7 @@ const HomeModalForm = (props: ModalProps) => {
                 value={firstText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setFirstText)}
+                onChange={(e) => HandleOnChange(e, setFirstText)}
               />
             </FormGroup>
             <FormGroup>
@@ -118,7 +112,7 @@ const HomeModalForm = (props: ModalProps) => {
                 value={secondText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setSecondText)}
+                onChange={(e) => HandleOnChange(e, setSecondText)}
               />
             </FormGroup>
             <FormGroup>
@@ -126,7 +120,7 @@ const HomeModalForm = (props: ModalProps) => {
                 value={thirdText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setThirdText)}
+                onChange={(e) => HandleOnChange(e, setThirdText)}
               />
             </FormGroup>
           </Col>{' '}
@@ -138,7 +132,7 @@ const HomeModalForm = (props: ModalProps) => {
                 value={adviceTitleText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setAdviceTitleText)}
+                onChange={(e) => HandleOnChange(e, setAdviceTitleText)}
               />
             </FormGroup>
             <FormGroup>
@@ -147,7 +141,7 @@ const HomeModalForm = (props: ModalProps) => {
                 value={adviceDescOneText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setAdviceDescOneText)}
+                onChange={(e) => HandleOnChange(e, setAdviceDescOneText)}
               />
             </FormGroup>
             <FormGroup>
@@ -156,7 +150,7 @@ const HomeModalForm = (props: ModalProps) => {
                 value={adviceDescTwoText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setAdviceDescTwoText)}
+                onChange={(e) => HandleOnChange(e, setAdviceDescTwoText)}
               />
             </FormGroup>
           </Col>{' '}
@@ -168,7 +162,7 @@ const HomeModalForm = (props: ModalProps) => {
                 value={askFormTitleOneText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setAskFormTitleOneText)}
+                onChange={(e) => HandleOnChange(e, setAskFormTitleOneText)}
               />
             </FormGroup>
             <FormGroup>
@@ -177,7 +171,7 @@ const HomeModalForm = (props: ModalProps) => {
                 value={askFormTitleTwoText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setAskFormTitleTwoText)}
+                onChange={(e) => HandleOnChange(e, setAskFormTitleTwoText)}
               />
             </FormGroup>
             <FormGroup>
@@ -186,7 +180,7 @@ const HomeModalForm = (props: ModalProps) => {
                 value={askFormOfferText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setAskFormOfferText)}
+                onChange={(e) => HandleOnChange(e, setAskFormOfferText)}
               />
             </FormGroup>
             <FormGroup>
@@ -196,7 +190,7 @@ const HomeModalForm = (props: ModalProps) => {
                 value={askFormBtnText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setAskFormBtnText)}
+                onChange={(e) => HandleOnChange(e, setAskFormBtnText)}
               />
             </FormGroup>
           </Col>

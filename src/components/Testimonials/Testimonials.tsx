@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Rating from '../Rating/Rating';
-import { Row } from 'react-bootstrap';
+import { Card, Row } from 'react-bootstrap';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper';
 import { testimonials } from '../../../db/db.json';
@@ -20,7 +20,7 @@ const Testimonials = () => {
           spaceBetween={30}
           centeredSlides={true}
           autoplay={{
-            delay: 2500,
+            delay: 2000,
             disableOnInteraction: false,
           }}
           pagination={{
@@ -32,21 +32,22 @@ const Testimonials = () => {
           slidesPerView={2}
         >
           <Row>
-            {testimonials.map(({ image, name, rate, desc }, index) => (
-              <SwiperSlide key={index} className='content_col'>
-                <Row>
-                  <Col>
-                    <figure>
-                      <img src={image} alt={name} title={name} />
-                    </figure>
-                  </Col>
-                  <Col>
-                    <h5>{name}</h5>
-                    <Rating rate={rate} />
-                  </Col>
-                  <p className='desc'>{desc}</p>
-                </Row>
-              </SwiperSlide>
+            {testimonials.map(({ name, rate, desc }, index) => (
+              <Col key={index}>
+                <SwiperSlide className='content_col'>
+                  <Card>
+                    <Card.Header>
+                      <Card.Title>{name}</Card.Title>
+                    </Card.Header>
+                    <Card.Body>
+                      <p className='desc'>{desc}</p>
+                    </Card.Body>
+                    <Card.Footer>
+                      <Rating rate={rate} />
+                    </Card.Footer>
+                  </Card>
+                </SwiperSlide>
+              </Col>
             ))}
           </Row>
         </Swiper>

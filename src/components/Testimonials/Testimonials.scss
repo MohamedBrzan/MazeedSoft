@@ -5,7 +5,6 @@
 .testimonials {
   .content_col {
     gap: 2rem;
-    background-color: #ffff;
     color: $third_color;
     padding: 1rem;
     border-radius: 0.2rem;
@@ -25,7 +24,17 @@
   .swiper-button-next {
     color: $primary_color;
   }
-  .swiper-pagination-bullet.swiper-pagination-bullet-active{
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
     background-color: $primary_color;
+  }
+}
+
+.swiper-slide {
+  @include MediaQuery('xs') {
+    width: 100% !important;
+  }
+
+  @include MediaQuery('md') {
+    width: 50% !important;
   }
 }

@@ -1,9 +1,9 @@
 import Interface from './pages/Home/Home';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.scss';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.scss';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Header from './components/Header/Header';
 import UpperBtn from './components/UpperBtn/UpperBtn';
@@ -43,9 +43,15 @@ function App() {
   }
 
   if (location.pathname === '/aram_tech/admin_control/dashboard') {
-    localStorage.setItem('header_link', JSON.stringify({}));
-    localStorage.setItem('home_data', JSON.stringify({}));
-    localStorage.setItem('about_us', JSON.stringify({}));
+    [
+      'header_link',
+      'home_data',
+      'about_us',
+      'call_us',
+      'features',
+      'testimonials',
+      'footer',
+    ].map((name) => localStorage.setItem(name, JSON.stringify({})));
   }
 
   return (

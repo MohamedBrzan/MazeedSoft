@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { FormControl, FormGroup, FormLabel, Modal } from 'react-bootstrap';
 import ModalProps from '../../../types/ModalProps';
 import HandleChangeHeaderLinks from '../../../functions/HandleChangeHeaderLinks';
+import HandleOnChange from '../../../functions/HandleOnChange';
 
 const HeaderModalForm = (props: ModalProps) => {
   const headerLink = JSON.parse(localStorage.getItem('header_link') || '')
@@ -39,7 +40,7 @@ const HeaderModalForm = (props: ModalProps) => {
             value={titleState}
             placeholder='Enter Link title'
             className='mb-1'
-            onChange={(e) => setTitleState(e.target.value)}
+            onChange={(e) => HandleOnChange(e, setTitleState)}
           />
 
           <FormControl
@@ -47,7 +48,7 @@ const HeaderModalForm = (props: ModalProps) => {
             placeholder='Enter Link link'
             className='mb-1'
             dir='ltr'
-            onChange={(e) => setLinkState(e.target.value)}
+            onChange={(e) => HandleOnChange(e, setLinkState)}
           />
         </FormGroup>
 

@@ -1,5 +1,8 @@
 @use'../../scss/Variables' as *;
 
 .about_us{
+ img{
+  object-fit: cover;
+ }
 
 }

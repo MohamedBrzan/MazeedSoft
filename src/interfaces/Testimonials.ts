@@ -1,5 +1,5 @@
 interface Testimonials {
-  image: string;
+  id: number;
   name: string;
   rate: number;
   desc: string;

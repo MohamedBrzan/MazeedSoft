@@ -11,6 +11,7 @@ import ModalProps from '../../../types/ModalProps';
 
 import '../Dashboard.scss';
 import HandleChangeAboutUsData from '../../../functions/HandleChangeAboutUsData';
+import HandleOnChange from '../../../functions/HandleOnChange';
 
 const AboutUsModalForm = (props: ModalProps) => {
   const aboutUsData = JSON.parse(localStorage.getItem('about_us') || '')
@@ -37,13 +38,6 @@ const AboutUsModalForm = (props: ModalProps) => {
     setVisionDescText(vision?.desc);
   }, [desc, mission?.desc, mission?.title, title, vision?.desc, vision?.title]);
 
-  const handleOnChange = (
-    e: React.ChangeEvent<FormControlElement>,
-    state: React.Dispatch<React.SetStateAction<string>>
-  ) => {
-    return state(e.target.value);
-  };
-
   return (
     <Modal
       className='about_us_modal_form'
@@ -65,7 +59,7 @@ const AboutUsModalForm = (props: ModalProps) => {
                 value={titleText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setTitleText)}
+                onChange={(e) => HandleOnChange(e, setTitleText)}
               />
             </FormGroup>
           </Col>
@@ -77,7 +71,7 @@ const AboutUsModalForm = (props: ModalProps) => {
                 value={descText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setDescText)}
+                onChange={(e) => HandleOnChange(e, setDescText)}
               />
             </FormGroup>
           </Col>
@@ -88,14 +82,14 @@ const AboutUsModalForm = (props: ModalProps) => {
                 value={missionTitleText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setMissionTitleText)}
+                onChange={(e) => HandleOnChange(e, setMissionTitleText)}
               />
               <FormControl
                 as={'textarea'}
                 value={missionDescText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setMissionDescText)}
+                onChange={(e) => HandleOnChange(e, setMissionDescText)}
               />
             </FormGroup>
           </Col>
@@ -106,14 +100,14 @@ const AboutUsModalForm = (props: ModalProps) => {
                 value={visionTitleText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setVisionTitleText)}
+                onChange={(e) => HandleOnChange(e, setVisionTitleText)}
               />
               <FormControl
                 as={'textarea'}
                 value={visionDescText}
                 placeholder='Enter Link title'
                 className='mb-1'
-                onChange={(e) => handleOnChange(e, setVisionDescText)}
+                onChange={(e) => HandleOnChange(e, setVisionDescText)}
               />
             </FormGroup>
           </Col>

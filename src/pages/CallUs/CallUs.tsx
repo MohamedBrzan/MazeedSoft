@@ -3,13 +3,13 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
-import { contact_us } from '../../../db/db.json';
+import { call_us } from '../../../db/db.json';
 
 import './CallUs.scss';
 import { Button, FormLabel } from 'react-bootstrap';
 
 const CallUs = () => {
-  const { title, desc } = contact_us;
+  const { title, desc } = call_us;
   return (
     <section className='call_us'>
       <Row className='m-0 p-0 justify-content-center align-items-center'>
@@ -85,7 +85,7 @@ const CallUs = () => {
                 required
               />
             </FormGroup>
-            <Button type='submit' className='form_btn'>
+            <Button type='submit' className='page_form_btn'>
               إرسل
             </Button>
           </Form>

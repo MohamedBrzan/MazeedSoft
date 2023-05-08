@@ -14,7 +14,7 @@ const AboutUs = () => {
               <img
                 src={image}
                 alt=''
-                width='auto'
+                width='100%'
                 height={600}
                 loading='lazy'
               />
