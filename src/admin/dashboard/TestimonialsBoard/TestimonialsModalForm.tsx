@@ -20,7 +20,7 @@ const TestimonialsModalForm = (props: ModalProps) => {
 
   const { modalShow, onHide } = props;
 
-  const { id, image, name, desc, rate } = testimonialsData;
+  const { id, name, desc, rate } = testimonialsData;
 
   const [nameText, setNameText] = useState<string>('');
   const [descText, setDescText] = useState<string>('');

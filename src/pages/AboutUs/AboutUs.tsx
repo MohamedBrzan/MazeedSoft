@@ -1,5 +1,4 @@
 import { Col, Container, Row } from 'react-bootstrap';
-import AboutUs2 from '../../assets/about_us2.jpg';
 import { about_us } from '../../../db/db.json';
 import './AboutUs.scss';
 

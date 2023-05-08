@@ -1,7 +1,7 @@
 import PagesLinks from './PagesLinks';
 import OffCanvas from '../../OffCanvas';
 import { Link } from 'react-router-dom';
-import { LogoType } from '../../../main';
+import { LogoType } from '../../../App';
 
 const Navbar = (props: LogoType) => {
   const { logo } = props;

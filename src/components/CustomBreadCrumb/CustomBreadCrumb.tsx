@@ -1,5 +1,5 @@
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
-import BreadCrumbType from '../../interfaces/BreadCrumbType';
+import BreadCrumbType from '../../interfaces/BreadCrumb';
 import { Link } from 'react-router-dom';
 import './CustomBreadcrumb.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

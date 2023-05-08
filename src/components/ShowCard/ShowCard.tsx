@@ -6,11 +6,13 @@ import ModalProps from '../../types/ModalProps';
 
 const ShowCard = (props: ModalProps) => {
   const { onHide, modalShow } = props;
-  const card = JSON.parse(localStorage.getItem('card') || '')
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const cardData = JSON.parse(localStorage.getItem('card') || '')
     ? JSON.parse(localStorage.getItem('card') || '')
     : {};
 
-  const { image, title, desc } = card;
+  const { image, title, desc } = cardData;
+
   return (
     <section className='show_card'>
       <Modal

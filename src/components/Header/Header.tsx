@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 
 import './Header.scss';
 import Navbar from './helpers/Navbar';
-import { LogoType } from '../../main';
+import { LogoType } from '../../App';
 
 const Header = (props: LogoType) => {
   return (

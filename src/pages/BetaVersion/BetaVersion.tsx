@@ -6,15 +6,9 @@ import General from './helpers/General';
 import Movement from './helpers/Materials/Movement';
 import POS from './helpers/POS/POS';
 import Accounts from './helpers/Accounts/Accounts';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const BetaVersion = () => {
-  const navigate = useNavigate();
-
-  const ContactWithUs = () => {
-    window.scrollTo(0, 0);
-    navigate('/call_us');
-  };
   return (
     <section className='beta_version'>
       <Container>

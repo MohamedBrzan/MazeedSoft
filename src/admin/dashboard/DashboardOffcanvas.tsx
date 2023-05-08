@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Offcanvas } from 'react-bootstrap';
 import HamburgerMenu from '../../assets/menu.svg';
 import DashboardLinks from './DashboardLinks';
