@@ -8,25 +8,32 @@ import {
   Row,
 } from 'react-bootstrap';
 import ModalProps from '../../../types/ModalProps';
-import HandleChangeCallUsData from '../../../functions/HandleChangeCallUsData';
 import HandleOnChange from '../../../functions/HandleOnChange';
+import {
+  useGetCallUsDataQuery,
+  useUpdateCallUsDataMutation,
+} from '../../../store/apis/CallUsApi';
 
 const CallUsModalForm = (props: ModalProps) => {
-  const callUsData = JSON.parse(localStorage.getItem('call_us') || '')
-    ? JSON.parse(localStorage.getItem('call_us') || '')
-    : {};
+  const { data, refetch } = useGetCallUsDataQuery();
+  const [updateCallUsData] = useUpdateCallUsDataMutation();
 
   const { modalShow, onHide } = props;
-
-  const { title, desc } = callUsData;
 
   const [titleText, setTitleText] = useState<string>('');
   const [descText, setDescText] = useState<string>('');
 
   useMemo(() => {
-    setTitleText(title);
-    setDescText(desc);
-  }, [desc, title]);
+    setTitleText(data?.title);
+    setDescText(data?.desc);
+  }, [data?.desc, data?.title]);
+
+  const UpdateIt = async () => {
+    const data = { title: titleText, desc: descText };
+    await updateCallUsData(data);
+    refetch();
+    onHide();
+  };
 
   return (
     <Modal
@@ -65,18 +72,7 @@ const CallUsModalForm = (props: ModalProps) => {
             </FormGroup>
           </Col>
         </Row>
-        <div
-          onClick={() =>
-            HandleChangeCallUsData(
-              {
-                titleText,
-                descText,
-              },
-              onHide
-            )
-          }
-          className='btn modal_form_btn'
-        >
+        <div onClick={UpdateIt} className='btn modal_form_btn'>
           تحديث
         </div>
       </Modal.Body>

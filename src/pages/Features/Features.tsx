@@ -3,14 +3,15 @@ import CardType from '../../interfaces/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { features } from '../../../db/db.json';
 import CardInterface from '../../interfaces/Card';
 import ModalProps from '../../types/ModalProps';
 
 import './Features.scss';
 import ShowCard from '../../components/ShowCard/ShowCard';
+import { useGetFeaturesDataQuery } from '../../store/apis/FeaturesApi';
 
 const Features = () => {
+  const { data, isLoading, isFetching, isError } = useGetFeaturesDataQuery();
   const [modalShow, setModalShow] = useState<boolean>(false);
   const onShow = () => setModalShow(true);
   const onHide = () => setModalShow(false);
@@ -30,10 +31,14 @@ const Features = () => {
 
   return (
     <section className='feature'>
-      <Container>
-        <Row>
-          {features.map(
-            ({ id, image, title, desc }: CardType, index: number) => (
+      {isLoading || isFetching ? (
+        'Loading...'
+      ) : isError ? (
+        'Error :('
+      ) : (
+        <Container>
+          <Row>
+            {data.map(({ id, image, title, desc }: CardType, index: number) => (
               <Col
                 xs={12}
                 md={6}
@@ -55,11 +60,11 @@ const Features = () => {
                 </div>
                 <ShowCard {...props} />
               </Col>
-            )
-          )}
-        </Row>
-        <ShowCard {...props} />
-      </Container>
+            ))}
+          </Row>
+          <ShowCard {...props} />
+        </Container>
+      )}
     </section>
   );
 };

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import HamburgerMenu from '../assets/menu.svg';
+import HamburgerMenu from '/menu.svg';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import PagesLinks from './Header/helpers/PagesLinks';
 

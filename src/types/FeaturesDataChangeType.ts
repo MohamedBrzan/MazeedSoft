@@ -1,5 +1,5 @@
 type FeaturesDataChangeType = {
-  id: number;
+  id?: number;
   image: string;
   titleText: string;
   descText: string;

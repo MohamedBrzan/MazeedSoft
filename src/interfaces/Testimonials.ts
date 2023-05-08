@@ -1,7 +1,8 @@
 interface Testimonials {
+  [x: string]: any;
   id: number;
   name: string;
-  rate: number;
+  rate: number | string;
   desc: string;
 }
 

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { backendURL } from '../apis/constants/appApis';
 import HomeDataChangeType from '../types/HomeDataChangeType';
 
 const HandleChangeHomeData = async (props: HomeDataChangeType, onHide: any) => {
@@ -19,7 +18,7 @@ const HandleChangeHomeData = async (props: HomeDataChangeType, onHide: any) => {
   } = props;
   return await axios({
     method: 'PUT',
-    baseURL: `${backendURL}/home`,
+    baseURL: `/home`,
     data: {
       btn: btnText,
       signature: signatureText,

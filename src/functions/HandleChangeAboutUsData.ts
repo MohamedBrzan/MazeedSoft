@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { backendURL } from '../apis/constants/appApis';
 import AboutUsDataChangeType from '../types/AboutUsDataChangeType';
 
 const HandleChangeAboutUsData = async (
@@ -17,7 +16,7 @@ const HandleChangeAboutUsData = async (
   } = props;
   return await axios({
     method: 'PUT',
-    baseURL: `${backendURL}/about_us`,
+    baseURL: `/about_us`,
     data: {
       image,
       title: titleText,

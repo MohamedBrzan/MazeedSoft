@@ -4,198 +4,188 @@ import HomeInterface from '../../../interfaces/Home';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { home } from '../../../../db/db.json';
 import { Card, FormControl, FormGroup, FormLabel } from 'react-bootstrap';
 import HomeModalForm from './HomeModalForm';
+import { useGetHomeDataQuery } from '../../../store/apis/HomeApi';
 
 const HomeBoard = () => {
+  const { data, isLoading, isFetching, isError, refetch } =
+    useGetHomeDataQuery();
+
   const [modalShow, setModalShow] = useState<boolean>(false);
   const onShow = () => setModalShow(true);
-  const onHide = () => setModalShow(false);
+  const onHide = () => {
+    setModalShow(false);
+    refetch();
+  };
 
   const props: ModalProps = {
     onHide,
     modalShow,
   };
 
-  const { introText, btn, askForm, advice, signature } = home;
-
-  const handleClick = ({
-    introText,
-    btn,
-    askForm,
-    advice,
-    signature,
-  }: HomeInterface) => {
-    window.localStorage.setItem(
-      'home_data',
-      JSON.stringify({
-        introText,
-        btn,
-        askForm,
-        advice,
-        signature,
-      })
-    );
+  const handleClick = ({ ...data }: HomeInterface) => {
+    window.localStorage.setItem('home_data', JSON.stringify(data));
     onShow();
   };
 
   return (
     <section className='dashboard_section home' id='home'>
       <Form dir='rtl'>
-        <Row className='py-2'>
-          <Col md={6} className='mb-3'>
-            <Card>
-              <Card.Body>
-                <FormGroup>
-                  <FormLabel>زر الواجهة : </FormLabel>
-                  <FormControl
-                    value={btn}
-                    placeholder='Enter Link title'
-                    className='mb-1'
-                    disabled
-                  />
-                </FormGroup>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={6} className='mb-3'>
-            <Card>
-              <Card.Body>
-                <FormGroup>
-                  <FormLabel>الختم : </FormLabel>
-                  <FormControl
-                    value={signature}
-                    placeholder='Enter Link title'
-                    className='mb-1'
-                    disabled
-                  />
-                </FormGroup>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={6} className='mb-3'>
-            <Card>
-              <Card.Body>
-                <FormGroup>
-                  <FormLabel>المقدمة : </FormLabel>
-                  <FormControl
-                    value={introText?.first}
-                    placeholder='Enter Link title'
-                    className='mb-1'
-                    disabled
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <FormControl
-                    value={introText?.second}
-                    placeholder='Enter Link title'
-                    className='mb-1'
-                    disabled
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <FormControl
-                    value={introText?.third}
-                    placeholder='Enter Link title'
-                    className='mb-1'
-                    disabled
-                  />
-                </FormGroup>
-              </Card.Body>
-            </Card>
-          </Col>{' '}
-          <Col md={6} className='mb-3'>
-            <Card>
-              <Card.Body>
-                <FormGroup>
-                  <FormLabel> تسويق : </FormLabel>
-                  <FormControl
-                    as={'textarea'}
-                    value={advice?.title}
-                    placeholder='Enter Link title'
-                    className='mb-1'
-                    disabled
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <FormControl
-                    as={'textarea'}
-                    value={advice?.desc_one}
-                    placeholder='Enter Link title'
-                    className='mb-1'
-                    disabled
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <FormControl
-                    as={'textarea'}
-                    value={advice?.desc_two}
-                    placeholder='Enter Link title'
-                    className='mb-1'
-                    disabled
-                  />
-                </FormGroup>
-              </Card.Body>
-            </Card>
-          </Col>{' '}
-          <Col md={6} className='mb-3'>
-            <Card>
-              <Card.Body>
-                <FormGroup>
-                  <FormLabel> طلب البرنامج : </FormLabel>
-                  <FormControl
-                    as={'textarea'}
-                    value={askForm?.title_one}
-                    placeholder='Enter Link title'
-                    className='mb-1'
-                    disabled
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <FormControl
-                    as={'textarea'}
-                    value={askForm?.title_two}
-                    placeholder='Enter Link title'
-                    className='mb-1'
-                    disabled
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <FormControl
-                    as={'textarea'}
-                    value={askForm?.offer}
-                    placeholder='Enter Link title'
-                    className='mb-1'
-                    disabled
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <FormLabel> الزر : </FormLabel>
-                  <FormControl
-                    as={'textarea'}
-                    value={askForm?.btn}
-                    placeholder='Enter Link title'
-                    className='mb-1'
-                    disabled
-                  />
-                </FormGroup>
-              </Card.Body>
-            </Card>
-
-            <HomeModalForm {...props} />
-          </Col>
-        </Row>
+        {isLoading || isFetching ? (
+          'Loading...'
+        ) : isError ? (
+          'Error :('
+        ) : (
+          <Row className='py-2'>
+            <Col xs={12} md={6} className='mb-3'>
+              <Card>
+                <Card.Body>
+                  <FormGroup>
+                    <FormLabel>زر الواجهة : </FormLabel>
+                    <FormControl
+                      value={data.btn}
+                      placeholder='Enter Link title'
+                      className='mb-1'
+                      disabled
+                    />
+                  </FormGroup>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col xs={12} md={6} className='mb-3'>
+              <Card>
+                <Card.Body>
+                  <FormGroup>
+                    <FormLabel>الختم : </FormLabel>
+                    <FormControl
+                      value={data.signature}
+                      placeholder='Enter Link title'
+                      className='mb-1'
+                      disabled
+                    />
+                  </FormGroup>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col xs={12} md={6} className='mb-3'>
+              <Card>
+                <Card.Body>
+                  <FormGroup>
+                    <FormLabel>المقدمة : </FormLabel>
+                    <FormControl
+                      value={data.introText.first}
+                      placeholder='Enter Link title'
+                      className='mb-1'
+                      disabled
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <FormControl
+                      value={data.introText.second}
+                      placeholder='Enter Link title'
+                      className='mb-1'
+                      disabled
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <FormControl
+                      value={data.introText.third}
+                      placeholder='Enter Link title'
+                      className='mb-1'
+                      disabled
+                    />
+                  </FormGroup>
+                </Card.Body>
+              </Card>
+            </Col>{' '}
+            <Col xs={12} md={6} className='mb-3'>
+              <Card>
+                <Card.Body>
+                  <FormGroup>
+                    <FormLabel> تسويق : </FormLabel>
+                    <FormControl
+                      as={'textarea'}
+                      value={data.advice.title}
+                      placeholder='Enter Link title'
+                      className='mb-1'
+                      disabled
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <FormControl
+                      as={'textarea'}
+                      value={data.advice.desc_one}
+                      placeholder='Enter Link title'
+                      className='mb-1'
+                      disabled
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <FormControl
+                      as={'textarea'}
+                      value={data.advice.desc_two}
+                      placeholder='Enter Link title'
+                      className='mb-1'
+                      disabled
+                    />
+                  </FormGroup>
+                </Card.Body>
+              </Card>
+            </Col>{' '}
+            <Col xs={12} md={6} className='mb-3'>
+              <Card>
+                <Card.Body>
+                  <FormGroup>
+                    <FormLabel> طلب البرنامج : </FormLabel>
+                    <FormControl
+                      as={'textarea'}
+                      value={data.askForm.title_one}
+                      placeholder='Enter Link title'
+                      className='mb-1'
+                      disabled
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <FormControl
+                      as={'textarea'}
+                      value={data.askForm.title_two}
+                      placeholder='Enter Link title'
+                      className='mb-1'
+                      disabled
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <FormControl
+                      as={'textarea'}
+                      value={data.askForm.offer}
+                      placeholder='Enter Link title'
+                      className='mb-1'
+                      disabled
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <FormLabel> الزر : </FormLabel>
+                    <FormControl
+                      as={'textarea'}
+                      value={data.askForm.btn}
+                      placeholder='Enter Link title'
+                      className='mb-1'
+                      disabled
+                    />
+                  </FormGroup>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        )}
+        <HomeModalForm {...props} />
 
         <div
           className='btn form_btn'
           onClick={() =>
             handleClick({
-              introText,
-              btn,
-              askForm,
-              advice,
-              signature,
+              ...data,
             })
           }
         >

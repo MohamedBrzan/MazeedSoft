@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import whatsApp from '../../assets/whatsapp.svg';
+import whatsApp from '/whatsapp.svg';
 
 import './WhatsAppBtn.scss';
 

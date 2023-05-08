@@ -14,7 +14,6 @@ import VideoPage from './pages/VideoPage/VideoPage';
 import CallUs from './pages/CallUs/CallUs';
 import Privacy from './pages/Privacy/Privacy';
 import BetaVersion from './pages/BetaVersion/BetaVersion';
-import logo from './assets/Aram-Tech-PNG.png';
 import Testimonials from './components/Testimonials/Testimonials';
 import Footer from './components/Footer/Footer';
 import Admin from './admin/Admin';
@@ -25,14 +24,6 @@ window.onscroll = () => {
   } else {
     document.getElementById('upper_btn')?.classList.remove('active');
   }
-};
-
-export type LogoType = {
-  logo: string;
-};
-
-const data: LogoType = {
-  logo,
 };
 
 function App() {
@@ -56,9 +47,7 @@ function App() {
 
   return (
     <>
-      {location.pathname !== '/aram_tech/admin_control/dashboard' && (
-        <Header {...data} />
-      )}
+      {location.pathname !== '/aram_tech/admin_control/dashboard' && <Header />}
 
       <UpperBtn />
 

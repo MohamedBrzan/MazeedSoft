@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
-
-import { header } from '../../../../db/db.json';
-
+import { useGetHeaderDataQuery } from '../../../store/apis/HeaderApi';
 const PagesLinks = () => {
+  const { data, isFetching, isLoading, isError } = useGetHeaderDataQuery();
+
   const handleClick: any = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
@@ -19,11 +19,15 @@ const PagesLinks = () => {
 
   return (
     <ul className='list-unstyled links'>
-      {header.map(({ link, title }, index) => (
-        <NavLink to={link} onClick={handleClick} key={index}>
-          <li className='link'>{title}</li>
-        </NavLink>
-      ))}
+      {isFetching || isLoading
+        ? 'Loading...'
+        : isError
+        ? 'Error :('
+        : data.map(({ link, title }, index: number) => (
+            <NavLink to={link} onClick={handleClick} key={index}>
+              <li className='link'>{title}</li>
+            </NavLink>
+          ))}
     </ul>
   );
 };

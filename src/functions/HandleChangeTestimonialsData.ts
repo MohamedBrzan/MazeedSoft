@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { backendURL } from '../apis/constants/appApis';
 import TestimonialsDataChangeType from '../types/TestimonialsDataChangeType';
 
 const HandleChangeTestimonialsData = async (
@@ -9,7 +8,7 @@ const HandleChangeTestimonialsData = async (
   const { id, nameText, descText, rateNum } = props;
   return await axios({
     method: 'PUT',
-    baseURL: `${backendURL}/testimonials/${id}`,
+    baseURL: `/testimonials/${id}`,
     data: {
       name: nameText,
       desc: descText,

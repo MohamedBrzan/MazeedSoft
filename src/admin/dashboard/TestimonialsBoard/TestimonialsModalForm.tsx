@@ -8,8 +8,12 @@ import {
   Row,
 } from 'react-bootstrap';
 import ModalProps from '../../../types/ModalProps';
-import HandleChangeTestimonialsData from '../../../functions/HandleChangeTestimonialsData';
 import HandleOnChange from '../../../functions/HandleOnChange';
+import {
+  useGetTestimonialByIdQuery,
+  useGetTestimonialsDataQuery,
+  useUpdateTestimonialMutation,
+} from '../../../store/apis/TestimonialsApi';
 
 const TestimonialsModalForm = (props: ModalProps) => {
   const testimonialsData = JSON.parse(
@@ -20,17 +24,29 @@ const TestimonialsModalForm = (props: ModalProps) => {
 
   const { modalShow, onHide } = props;
 
-  const { id, name, desc, rate } = testimonialsData;
+  const { id } = testimonialsData;
+
+  const { refetch: refetchAllData } = useGetTestimonialsDataQuery();
+  const { data, refetch } = useGetTestimonialByIdQuery(id);
+  const [updateTestimonialData] = useUpdateTestimonialMutation();
 
   const [nameText, setNameText] = useState<string>('');
   const [descText, setDescText] = useState<string>('');
-  const [rateNum, setRateNum] = useState<string>('');
+  const [rateNum, setRateNum] = useState<string | number>('');
 
   useMemo(() => {
-    setNameText(name);
-    setDescText(desc);
-    setRateNum(rate);
-  }, [desc, name, rate]);
+    setNameText(data?.name);
+    setDescText(data?.desc);
+    setRateNum(data?.rate);
+  }, [data?.desc, data?.name, data?.rate]);
+
+  const UpdateIt = async () => {
+    const data = { name: nameText, desc: descText, rate: Number(rateNum) };
+    await updateTestimonialData({ id, ...data });
+    refetch();
+    refetchAllData();
+    onHide();
+  };
 
   return (
     <Modal
@@ -87,20 +103,7 @@ const TestimonialsModalForm = (props: ModalProps) => {
             </FormGroup>
           </Col>
         </Row>
-        <div
-          onClick={() =>
-            HandleChangeTestimonialsData(
-              {
-                id,
-                nameText,
-                descText,
-                rateNum,
-              },
-              onHide
-            )
-          }
-          className='btn modal_form_btn'
-        >
+        <div onClick={UpdateIt} className='btn modal_form_btn'>
           تحديث
         </div>
       </Modal.Body>

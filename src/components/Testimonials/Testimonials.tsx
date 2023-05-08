@@ -1,13 +1,14 @@
 import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
 import Rating from '../Rating/Rating';
 import { Card, Row } from 'react-bootstrap';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper';
-import { testimonials } from '../../../db/db.json';
 import './Testimonials.scss';
+import { useGetTestimonialsDataQuery } from '../../store/apis/TestimonialsApi';
 
 const Testimonials = () => {
+  const { data, isLoading, isFetching, isError } =
+    useGetTestimonialsDataQuery();
   return (
     <div className='testimonials'>
       <Container>
@@ -15,26 +16,29 @@ const Testimonials = () => {
           <h3>أراء العملاء</h3>
           <div className='line'></div>
         </div>
-
-        <Swiper
-          spaceBetween={30}
-          centeredSlides={true}
-          autoplay={{
-            delay: 2000,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={true}
-          modules={[Autoplay, Pagination, Navigation]}
-          className='mySwiper'
-          slidesPerView={2}
-        >
-          <Row>
-            {testimonials.map(({ name, rate, desc }, index) => (
-              <Col key={index}>
-                <SwiperSlide className='content_col'>
+        {isLoading || isFetching ? (
+          'Loading...'
+        ) : isError ? (
+          'Error :('
+        ) : (
+          <Swiper
+            spaceBetween={30}
+            centeredSlides={true}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            modules={[Autoplay, Pagination, Navigation]}
+            className='mySwiper'
+            slidesPerView={2}
+          >
+            <Row>
+              {data.map(({ name, rate, desc }, index: number) => (
+                <SwiperSlide key={index} className='content_col'>
                   <Card>
                     <Card.Header>
                       <Card.Title>{name}</Card.Title>
@@ -47,10 +51,10 @@ const Testimonials = () => {
                     </Card.Footer>
                   </Card>
                 </SwiperSlide>
-              </Col>
-            ))}
-          </Row>
-        </Swiper>
+              ))}
+            </Row>
+          </Swiper>
+        )}
       </Container>
     </div>
   );

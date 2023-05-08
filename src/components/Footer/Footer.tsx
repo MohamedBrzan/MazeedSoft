@@ -5,19 +5,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopyright } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import SocialMediaLinks from '../SocialMediaLinks/SocialMediaLinks';
-import { footer } from '../../../db/db.json';
+import { useGetFooterDataQuery } from '../../store/apis/FooterApi';
 
 const Footer = () => {
-  const { logo, desc, importantLinks, rights } = footer;
+  const { data, isLoading, isFetching, isError } = useGetFooterDataQuery();
 
-  return (
+  return isLoading || isFetching ? (
+    'Loading...'
+  ) : isError ? (
+    'Error :('
+  ) : (
     <footer>
       <Stack direction='horizontal' gap={5} className='p-5'>
         <Col xs={12} md={6} lg={4}>
           <figure>
-            <img src={logo} alt='Website Logo.' width={100} />
+            <img src={data.logo} alt='Website Logo.' width={100} />
           </figure>
-          <p>{desc}</p>
+          <p>{data.desc}</p>
         </Col>
         <Col xs={12} md={6} lg={4}>
           <h4>وسائل التواصل</h4>
@@ -26,14 +30,14 @@ const Footer = () => {
         <Col xs={12} md={6} lg={4}>
           <h4>روابط مهمة</h4>
           <p>
-            {importantLinks.text}
-            <Link to={importantLinks.link.url}>
-              {importantLinks.link.name}
+            {data.importantLinks.text}
+            <Link to={data.importantLinks.link.url}>
+              {data.importantLinks.link.name}
             </Link>{' '}
           </p>
           <p>
-            <Link to={importantLinks.privacy.url}>
-              {importantLinks.privacy.name}
+            <Link to={data.importantLinks.privacy.url}>
+              {data.importantLinks.privacy.name}
             </Link>
           </p>
         </Col>
@@ -41,7 +45,7 @@ const Footer = () => {
       <hr />
       <div className='text-center'>
         <FontAwesomeIcon icon={faCopyright} />
-        <span className='px-1'>{rights}</span>
+        <span className='px-1'>{data.rights}</span>
         {new Date().getFullYear()}
       </div>
     </footer>

@@ -1,8 +1,11 @@
 import { useMemo, useState } from 'react';
 import { FormControl, FormGroup, FormLabel, Modal } from 'react-bootstrap';
 import ModalProps from '../../../types/ModalProps';
-import HandleChangeHeaderLinks from '../../../functions/HandleChangeHeaderLinks';
 import HandleOnChange from '../../../functions/HandleOnChange';
+import {
+  useGetHeaderDataQuery,
+  useUpdateHeaderLinkMutation,
+} from '../../../store/apis/HeaderApi';
 
 const HeaderModalForm = (props: ModalProps) => {
   const headerLink = JSON.parse(localStorage.getItem('header_link') || '')
@@ -11,10 +14,22 @@ const HeaderModalForm = (props: ModalProps) => {
 
   const { id, title, link } = headerLink;
 
+  const [updateHeaderLink] = useUpdateHeaderLinkMutation(id);
+  const { refetch } = useGetHeaderDataQuery();
+
   const [titleState, setTitleState] = useState<string>(title);
   const [linkState, setLinkState] = useState<string>(link);
 
   const { onHide, modalShow } = props;
+
+  const UpdateIt = async () => {
+    const data = { title: titleState, link: linkState };
+    await updateHeaderLink({ id, ...data });
+
+    refetch();
+
+    onHide();
+  };
 
   useMemo(() => {
     setTitleState(title);
@@ -48,16 +63,11 @@ const HeaderModalForm = (props: ModalProps) => {
             placeholder='Enter Link link'
             className='mb-1'
             dir='ltr'
-            onChange={(e) => HandleOnChange(e, setLinkState)}
+            disabled
           />
         </FormGroup>
 
-        <div
-          onClick={() =>
-            HandleChangeHeaderLinks({ id, titleState, linkState }, onHide)
-          }
-          className='btn modal_form_btn'
-        >
+        <div onClick={UpdateIt} className='btn modal_form_btn'>
           تحديث
         </div>
       </Modal.Body>

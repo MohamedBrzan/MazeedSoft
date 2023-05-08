@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { backendURL } from '../apis/constants/appApis';
 import HeaderLinksChangeType from '../types/HeaderLinksChangeType';
 
 const HandleChangeHeaderLinks = async (
@@ -8,7 +7,7 @@ const HandleChangeHeaderLinks = async (
 ) =>
   await axios({
     method: 'PUT',
-    baseURL: `${backendURL}/header/${id}`,
+    baseURL: `/header/${id}`,
     data: { title: titleState, link: linkState },
   })
     .then(() => onHide)

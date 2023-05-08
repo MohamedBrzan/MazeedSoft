@@ -78,3 +78,15 @@
     color: $dashboard_light;
   }
 }
+
+figure.feature_figure {
+  width: 100%;
+  @include MediaQuery('md') {
+    width: 50%;
+    display: block;
+    margin: auto;
+  }
+  img {
+    width: 100%;
+  }
+}

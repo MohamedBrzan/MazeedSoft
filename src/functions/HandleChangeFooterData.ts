@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { backendURL } from '../apis/constants/appApis';
 import FooterDataChangeType from '../types/FooterDataChangeType';
 
 const HandleChangeFooterData = async (
@@ -21,7 +20,7 @@ const HandleChangeFooterData = async (
   } = props;
   return await axios({
     method: 'PUT',
-    baseURL: `${backendURL}/footer`,
+    baseURL: `/footer`,
     data: {
       logo,
       desc: descText,

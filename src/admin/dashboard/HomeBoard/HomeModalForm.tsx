@@ -8,17 +8,16 @@ import {
   Row,
 } from 'react-bootstrap';
 import ModalProps from '../../../types/ModalProps';
-import HandleChangeHomeData from '../../../functions/HandleChangeHomeData';
 import HandleOnChange from '../../../functions/HandleOnChange';
+import {
+  useGetHomeDataQuery,
+  useUpdateHomeDataMutation,
+} from '../../../store/apis/HomeApi';
 
 const HomeModalForm = (props: ModalProps) => {
-  const homeData = JSON.parse(localStorage.getItem('home_data') || '')
-    ? JSON.parse(localStorage.getItem('home_data') || '')
-    : {};
-
   const { modalShow, onHide } = props;
-
-  const { btn, signature, introText, advice, askForm } = homeData;
+  const [updateHomeData, { reset }] = useUpdateHomeDataMutation();
+  const { data, refetch } = useGetHomeDataQuery();
 
   const [btnText, setBtnText] = useState<string>('');
   const [signatureText, setSignatureText] = useState<string>('');
@@ -33,32 +32,59 @@ const HomeModalForm = (props: ModalProps) => {
   const [askFormOfferText, setAskFormOfferText] = useState<string>('');
   const [askFormBtnText, setAskFormBtnText] = useState<string>('');
 
+  const UpdateIt = async () => {
+    const data = {
+      btn: btnText,
+      signature: signatureText,
+      introText: {
+        first: firstText,
+        second: secondText,
+        third: thirdText,
+      },
+      advice: {
+        title: adviceTitleText,
+        desc_one: adviceDescOneText,
+        desc_two: adviceDescTwoText,
+      },
+      askForm: {
+        title_one: askFormTitleOneText,
+        title_two: askFormTitleTwoText,
+        offer: askFormOfferText,
+        btn: askFormBtnText,
+      },
+    };
+
+    await updateHomeData({ ...data });
+    refetch();
+    onHide();
+  };
+
   useMemo(() => {
-    setBtnText(btn);
-    setSignatureText(signature);
-    setFirstText(introText?.first);
-    setSecondText(introText?.second);
-    setThirdText(introText?.third);
-    setAdviceTitleText(advice?.title);
-    setAdviceDescOneText(advice?.desc_one);
-    setAdviceDescTwoText(advice?.desc_two);
-    setAskFormTitleOneText(askForm?.title_one);
-    setAskFormTitleTwoText(askForm?.title_two);
-    setAskFormOfferText(askForm?.offer);
-    setAskFormBtnText(askForm?.btn);
+    setBtnText(data?.btn);
+    setSignatureText(data?.signature);
+    setFirstText(data?.introText?.first);
+    setSecondText(data?.introText?.second);
+    setThirdText(data?.introText?.third);
+    setAdviceTitleText(data?.advice?.title);
+    setAdviceDescOneText(data?.advice?.desc_one);
+    setAdviceDescTwoText(data?.advice?.desc_two);
+    setAskFormTitleOneText(data?.askForm?.title_one);
+    setAskFormTitleTwoText(data?.askForm?.title_two);
+    setAskFormOfferText(data?.askForm?.offer);
+    setAskFormBtnText(data?.askForm?.btn);
   }, [
-    advice?.desc_one,
-    advice?.desc_two,
-    advice?.title,
-    askForm?.btn,
-    askForm?.offer,
-    askForm?.title_one,
-    askForm?.title_two,
-    btn,
-    introText?.first,
-    introText?.second,
-    introText?.third,
-    signature,
+    data?.advice?.desc_one,
+    data?.advice?.desc_two,
+    data?.advice?.title,
+    data?.askForm?.btn,
+    data?.askForm?.offer,
+    data?.askForm?.title_one,
+    data?.askForm?.title_two,
+    data?.btn,
+    data?.introText?.first,
+    data?.introText?.second,
+    data?.introText?.third,
+    data?.signature,
   ]);
 
   return (
@@ -195,28 +221,7 @@ const HomeModalForm = (props: ModalProps) => {
             </FormGroup>
           </Col>
         </Row>
-        <div
-          onClick={() =>
-            HandleChangeHomeData(
-              {
-                btnText,
-                signatureText,
-                firstText,
-                secondText,
-                thirdText,
-                adviceTitleText,
-                adviceDescOneText,
-                adviceDescTwoText,
-                askFormTitleOneText,
-                askFormTitleTwoText,
-                askFormOfferText,
-                askFormBtnText,
-              },
-              onHide
-            )
-          }
-          className='btn modal_form_btn'
-        >
+        <div onClick={UpdateIt} className='btn modal_form_btn'>
           تحديث
         </div>
       </Modal.Body>

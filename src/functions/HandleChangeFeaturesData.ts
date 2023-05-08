@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { backendURL } from '../apis/constants/appApis';
 import FeaturesDataChangeType from '../types/FeaturesDataChangeType';
 
 const HandleChangeFeaturesData = async (
@@ -9,7 +8,7 @@ const HandleChangeFeaturesData = async (
   const { id, image, titleText, descText } = props;
   return await axios({
     method: 'PUT',
-    baseURL: `${backendURL}/features/${id}`,
+    baseURL: `/features/${id}`,
     data: {
       image,
       title: titleText,

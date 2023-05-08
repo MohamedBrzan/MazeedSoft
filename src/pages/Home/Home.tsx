@@ -6,42 +6,45 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { home } from '../../../db/db.json';
 import './Home.scss';
 import VideoPage from '../VideoPage/VideoPage';
+import { useGetHomeDataQuery } from '../../store/apis/HomeApi';
 
 const Home = () => {
-  const { advice, introText, signature, askForm, btn } = home;
+  const { data, isLoading, isFetching, isError } = useGetHomeDataQuery();
 
-  return (
+  return isLoading || isFetching ? (
+    'Loading...'
+  ) : isError ? (
+    'Error :('
+  ) : (
     <article className='home'>
       <section className='intro_img'>
-        <figure></figure>
         <Row>
           <Col className='content'>
-            <p>{introText.first}</p>
-            <p>{introText.second}</p>
-            <p>{introText.third}</p>
+            <p>{data.introText.first}</p>
+            <p>{data.introText.second}</p>
+            <p>{data.introText.third}</p>
 
             <Link to='/call_us' className='form_btn'>
-              {btn}
+              {data.btn}
             </Link>
           </Col>
           <Col className='truth_signature'>
-            <h6> {signature}</h6>
+            <h6> {data.signature}</h6>
           </Col>
         </Row>
       </section>
       <section className='manage_numbers'>
-        <h2>{advice.title}</h2>
-        <p> {advice.desc_one} </p>
-        <p> {advice.desc_two} </p>
+        <h2>{data.advice.title}</h2>
+        <p> {data.advice.desc_one} </p>
+        <p> {data.advice.desc_two} </p>
       </section>
       <section className='ready_control'>
         <h2>
-          {askForm.title_one} <br /> {askForm.title_two}
+          {data.askForm.title_one} <br /> {data.askForm.title_two}
         </h2>
-        <span className='get_now'>{askForm.offer} </span>
+        <span className='get_now'>{data.askForm.offer} </span>
 
         <Container className='form_container'>
           <Form>
@@ -99,7 +102,7 @@ const Home = () => {
               </Col>
             </Row>
             <Button type='submit' className='form_btn'>
-              {askForm.btn}
+              {data.askForm.btn}
             </Button>
           </Form>
         </Container>

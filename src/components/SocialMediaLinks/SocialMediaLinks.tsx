@@ -2,7 +2,7 @@ import { BsFacebook } from 'react-icons/bs';
 import './SocialMediaLinks.scss';
 import { AiFillYoutube, AiFillLinkedin } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { footer } from '../../../db/db.json';
+import { useGetFooterDataQuery } from '../../store/apis/FooterApi';
 
 export type SocialMediaIconsSize = {
   size: number;
@@ -10,16 +10,20 @@ export type SocialMediaIconsSize = {
 
 const SocialMediaLinks = (props: SocialMediaIconsSize) => {
   const { size } = props;
-  const { facebook, youtube, linkedin } = footer.links;
-  return (
+  const { data, isLoading, isFetching, isError } = useGetFooterDataQuery();
+  return isLoading || isFetching ? (
+    'Loading...'
+  ) : isError ? (
+    'Error :('
+  ) : (
     <div className='social_media_links'>
-      <Link to={facebook}>
+      <Link to={data.links.facebook}>
         <BsFacebook size={size} />
       </Link>
-      <Link to={youtube}>
+      <Link to={data.links.youtube}>
         <AiFillYoutube size={size} />
       </Link>
-      <Link to={linkedin}>
+      <Link to={data.links.linkedin}>
         <AiFillLinkedin size={size} />
       </Link>
     </div>

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { backendURL } from '../apis/constants/appApis';
 import CallUsDataChangeType from '../types/CallUsDataChangeType';
 
 const HandleChangeCallUsData = async (
@@ -9,7 +8,7 @@ const HandleChangeCallUsData = async (
   const { titleText, descText } = props;
   return await axios({
     method: 'PUT',
-    baseURL: `${backendURL}/call_us`,
+    baseURL: `/call_us`,
     data: {
       title: titleText,
       desc: descText,
