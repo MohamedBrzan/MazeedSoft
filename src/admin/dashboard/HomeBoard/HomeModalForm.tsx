@@ -16,7 +16,7 @@ import {
 
 const HomeModalForm = (props: ModalProps) => {
   const { modalShow, onHide } = props;
-  const [updateHomeData, { reset }] = useUpdateHomeDataMutation();
+  const [updateHomeData] = useUpdateHomeDataMutation();
   const { data, refetch } = useGetHomeDataQuery();
 
   const [btnText, setBtnText] = useState<string>('');

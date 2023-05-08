@@ -4,7 +4,7 @@ import ModalProps from '../../../types/ModalProps';
 import { useState } from 'react';
 import TestimonialsModalForm from './TestimonialsModalForm';
 import Testimonials from '../../../interfaces/Testimonials';
-import Rating from '../../../components/Rating/Rating';
+import Rating, { RatingType } from '../../../components/Rating/Rating';
 import { useGetTestimonialsDataQuery } from '../../../store/apis/TestimonialsApi';
 
 const TestimonialsBoard = () => {
@@ -23,6 +23,10 @@ const TestimonialsBoard = () => {
   const props: ModalProps = {
     onHide,
     modalShow,
+  };
+
+  const RateData: RatingType = {
+    rate: Number(data?.rate),
   };
 
   return (
@@ -46,7 +50,7 @@ const TestimonialsBoard = () => {
                     </Card.Header>
                     <Card.Body>
                       <h5>{name}</h5>
-                      <Rating rate={rate} />
+                      <Rating {...RateData} />
 
                       <p className='desc'>{desc}</p>
                     </Card.Body>

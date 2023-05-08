@@ -1,18 +1,10 @@
-import {
-  faStar,
-  faStarAndCrescent,
-  faStarHalf,
-  faStarHalfAlt,
-} from '@fortawesome/free-solid-svg-icons';
-import {
-  faStar as faEmptyStar,
-  faStarHalfStroke,
-} from '@fortawesome/free-regular-svg-icons';
+import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faEmptyStar } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './Rating.scss';
 
-type RatingType = {
+export type RatingType = {
   rate: number;
 };
 

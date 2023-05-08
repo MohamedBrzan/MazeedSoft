@@ -10,7 +10,6 @@ import {
 import ModalProps from '../../../types/ModalProps';
 
 import '../Dashboard.scss';
-import HandleChangeAboutUsData from '../../../functions/HandleChangeAboutUsData';
 import HandleOnChange from '../../../functions/HandleOnChange';
 import {
   useGetAboutUsDataQuery,
@@ -18,10 +17,6 @@ import {
 } from '../../../store/apis/AboutUsApi';
 
 const AboutUsModalForm = (props: ModalProps) => {
-  const aboutUsData = JSON.parse(localStorage.getItem('about_us') || '')
-    ? JSON.parse(localStorage.getItem('about_us') || '')
-    : {};
-
   const { modalShow, onHide } = props;
 
   const { data, isLoading, isFetching, isError, refetch } =

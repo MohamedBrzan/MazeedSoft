@@ -1,4 +1,4 @@
-import Interface from './pages/Home/Home';
+import Home from './pages/Home/Home';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -57,7 +57,7 @@ function App() {
       <main>
         <Routes>
           <Route path='/'>
-            <Route index element={<Interface />} />
+            <Route index element={<Home />} />
             <Route path='/program_features'>
               <Route index element={<Features />} />
             </Route>
